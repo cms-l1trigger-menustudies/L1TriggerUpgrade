@@ -31,6 +31,45 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetIsoEG(const edm::Handle<l1extra::L
     }
 }
 
+// TrkEG
+void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkEG(const edm::Handle<l1extra::L1TkElectronParticleCollection> tkEG, unsigned maxL1Extra)
+{
+  for(l1extra::L1TkElectronParticleCollection::const_iterator it=tkEG->begin(); it!=tkEG->end() && l1extra_.nTkEG<maxL1Extra; it++){
+    l1extra_.tkEGEt .push_back(it->et());
+    l1extra_.tkEGEta.push_back(it->eta());
+    l1extra_.tkEGPhi.push_back(it->phi());
+    //    l1extra_.tkEGzVtx.push_back(it->);
+    l1extra_.tkEGIso.push_back(it->getTrkIsol());
+    l1extra_.tkEGBx.push_back(0);//it->bx());
+    l1extra_.nTkEG++;
+  }
+}
+// TrkIsoEG
+void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkIsoEG(const edm::Handle<l1extra::L1TkElectronParticleCollection> tkIsoEG, unsigned maxL1Extra)
+{
+  for(l1extra::L1TkElectronParticleCollection::const_iterator it=tkIsoEG->begin(); it!=tkIsoEG->end() && l1extra_.nTkIsoEG<maxL1Extra; it++){
+    l1extra_.tkIsoEGEt .push_back(it->et());
+    l1extra_.tkIsoEGEta.push_back(it->eta());
+    l1extra_.tkIsoEGPhi.push_back(it->phi());
+    l1extra_.tkIsoEGIso.push_back(it->getTrkIsol());
+    l1extra_.tkIsoEGBx.push_back(0);//it->bx());
+    l1extra_.nTkIsoEG++;
+  }
+}
+
+//TkEM
+void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkEM(const edm::Handle<l1extra::L1TkEmParticleCollection> tkEM, unsigned maxL1Extra)
+{
+  for(l1extra::L1TkEmParticleCollection::const_iterator it=tkEM->begin(); it!=tkEM->end() && l1extra_.nTkEM<maxL1Extra; it++){
+    l1extra_.tkEMEt .push_back(it->et());
+    l1extra_.tkEMEta.push_back(it->eta());
+    l1extra_.tkEMPhi.push_back(it->phi());
+    l1extra_.tkEMBx.push_back(0);//it->bx());
+    l1extra_.nTkEM++;
+  }
+}
+
+
 void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTau(const edm::Handle<l1extra::L1JetParticleCollection> tau, unsigned maxL1Extra)
 {
       //std::cout << "Filling L1 Extra tauJets" << std::endl;      
@@ -59,6 +98,21 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetIsoTau(const edm::Handle<l1extra::
     }
 }
 
+//TkTau
+void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkTau(const edm::Handle<l1extra::L1TkJetParticleCollection> tkTau, unsigned maxL1Extra)
+{
+
+  for(l1extra::L1TkJetParticleCollection::const_iterator it=tkTau->begin(); it!=tkTau->end() && l1extra_.nTkTau<maxL1Extra; it++){
+
+    l1extra_.tkTauEt.push_back(it->et());
+    l1extra_.tkTauEta.push_back(it->eta());
+    l1extra_.tkTauPhi.push_back(it->phi());
+    l1extra_.tkTauBx.push_back(0);//it->bx());
+    l1extra_.nTkTau++;
+  }
+}
+
+
 void L1Analysis::L1AnalysisL1ExtraUpgrade::SetJet(const edm::Handle<l1extra::L1JetParticleCollection> jet, unsigned maxL1Extra)
 {
 //      std::cout << "Filling L1 Extra cenJets" << maxL1Extra << " " << cenJet->size() << std::endl;      
@@ -73,6 +127,22 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetJet(const edm::Handle<l1extra::L1J
       l1extra_.nJets++;
     }
 }
+
+// TkJet
+void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkJet(const edm::Handle<l1extra::L1TkJetParticleCollection> tkJet, unsigned maxL1Extra)
+{
+  //      std::cout << "Filling L1 Extra cenJets" << maxL1Extra << " " << cenJet->size() << std::endl;
+
+  for(l1extra::L1TkJetParticleCollection::const_iterator it=tkJet->begin(); it!=tkJet->end() && l1extra_.nTkJets<maxL1Extra; it++){
+    l1extra_.tkJetEt .push_back(it->et());
+    l1extra_.tkJetEta.push_back(it->eta());
+    l1extra_.tkJetPhi.push_back(it->phi());
+    l1extra_.tkJetzVtx.push_back(it->getJetVtx());
+    l1extra_.tkJetBx .push_back(0);//it->bx());
+    l1extra_.nTkJets++;
+  }
+}
+
 
 void L1Analysis::L1AnalysisL1ExtraUpgrade::SetFwdJet(const edm::Handle<l1extra::L1JetParticleCollection> fwdJet, unsigned maxL1Extra)
 {
@@ -110,6 +180,31 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetMuon(const edm::Handle<l1extra::L1
     }
 }
 
+void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkMuon(const edm::Handle<l1extra::L1TkMuonParticleCollection> muon, unsigned maxL1Extra)
+{
+  for(l1extra::L1TkMuonParticleCollection::const_iterator it=muon->begin(); it!=muon->end() && l1extra_.nTkMuons<maxL1Extra; it++){
+
+    l1extra_.tkMuonEt .push_back( it->et());
+    l1extra_.tkMuonEta.push_back(it->eta());
+    l1extra_.tkMuonPhi.push_back(it->phi());
+    l1extra_.tkMuonChg.push_back(it->charge());
+    // l1extra_.tkMuonIso.push_back(it->isIsolated());
+    // l1extra_.tkMuonMip.push_back(it->isMip());
+    // l1extra_.tkMuonFwd.push_back(it->isForward());
+    //l1extra_.tkMuonRPC.push_back(it->isRPC());
+    //    l1extra_.tkMuonzVtx.push_back(it->);
+    l1extra_.tkMuonBx .push_back(0);//it->bx());
+    // l1extra_.tkMuonQuality .push_back(it->gmtMuonCand().quality());
+
+    //              std::cout << "gmtmuon cand: pt " << it->gmtMuonCand().ptValue()
+    //                                      << "; ptExtra " << it->et()
+    //                                      << "; qual " << it->gmtMuonCand().quality()
+    //                                      << std::endl;
+    l1extra_.nTkMuons++;
+  }
+}
+
+
 void L1Analysis::L1AnalysisL1ExtraUpgrade::SetMet(const edm::Handle<l1extra::L1EtMissParticleCollection> mets)
 {
   for(l1extra::L1EtMissParticleCollection::const_iterator it=mets->begin(); it!=mets->end(); it++) {
@@ -120,6 +215,19 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetMet(const edm::Handle<l1extra::L1E
     l1extra_.nMet++;
   }
 }
+
+// TkMet
+void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkMet(const edm::Handle<l1extra::L1TkEtMissParticleCollection> tkMets)
+{
+  for(l1extra::L1TkEtMissParticleCollection::const_iterator it=tkMets->begin(); it!=tkMets->end(); it++) {
+    l1extra_.tkEt.    push_back( it->etTotal() );
+    l1extra_.tkMet.   push_back( it->et() );
+    l1extra_.tkMetPhi.push_back( it->phi() );
+    l1extra_.tkMetBx. push_back( it->bx() );
+    l1extra_.nTkMet++;
+  }
+}
+
 
 void L1Analysis::L1AnalysisL1ExtraUpgrade::SetMht(const edm::Handle<l1extra::L1EtMissParticleCollection> mhts)
 {
