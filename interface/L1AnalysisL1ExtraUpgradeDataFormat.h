@@ -38,12 +38,15 @@ namespace L1Analysis
       tkEGEta.clear();
       tkEGPhi.clear();
       tkEGBx.clear();
+      tkEGIso.clear();
+      tkEGzVtx.clear();
 
       nTkIsoEG = 0;
       tkIsoEGEt.clear();
       tkIsoEGEta.clear();
       tkIsoEGPhi.clear();
       tkIsoEGBx.clear();
+      tkIsoEGIso.clear();
 
       nTkEM = 0;
       tkEMEt.clear();
@@ -63,6 +66,14 @@ namespace L1Analysis
       isoTauPhi.clear(); 
       isoTauBx.clear();
 
+      // TkTaus
+      nTkTau = 0;
+      tkTauEt.clear();
+      tkTauEta.clear();
+      tkTauPhi.clear();
+      tkTauBx.clear();
+
+
       nJets = 0;
       jetEt.clear();
       jetEta.clear();
@@ -75,6 +86,7 @@ namespace L1Analysis
       tkJetEta.clear();
       tkJetPhi.clear();
       tkJetBx.clear();
+      tkJetzVtx.clear();
 
       nFwdJets = 0;
       fwdJetEt.clear();
@@ -106,7 +118,7 @@ namespace L1Analysis
       tkMuonRPC.clear();
       tkMuonBx.clear();
       tkMuonQuality.clear();
-
+      tkMuonzVtx.clear();
 
       nMet = 0;
       et.clear();
@@ -147,13 +159,15 @@ namespace L1Analysis
     std::vector<double> tkEGEta;
     std::vector<double> tkEGPhi;
     std::vector<int>    tkEGBx;
+    std::vector<double> tkEGIso;
+    std::vector<double> tkEGzVtx;
 
     unsigned int nTkIsoEG;
     std::vector<double> tkIsoEGEt;
     std::vector<double> tkIsoEGEta;
     std::vector<double> tkIsoEGPhi;
     std::vector<int>    tkIsoEGBx;
-
+    std::vector<double> tkIsoEGIso;
 
     unsigned int nTkEM;
     std::vector<double> tkEMEt;
@@ -174,6 +188,12 @@ namespace L1Analysis
     std::vector<double> isoTauPhi;
     std::vector<int>    isoTauBx;
 
+    unsigned int nTkTau;
+    std::vector<double> tkTauEt;
+    std::vector<double> tkTauEta;
+    std::vector<double> tkTauPhi;
+    std::vector<int>    tkTauBx;
+
     unsigned int nJets;
     std::vector<double> jetEt;
     std::vector<double> jetEta;
@@ -185,7 +205,7 @@ namespace L1Analysis
     std::vector<double> tkJetEta;
     std::vector<double> tkJetPhi;
     std::vector<int>    tkJetBx;
-
+    std::vector<double> tkJetzVtx;
 
     unsigned int nFwdJets;
     std::vector<double> fwdJetEt;
@@ -216,7 +236,7 @@ namespace L1Analysis
     std::vector<unsigned int> tkMuonRPC;
     std::vector<int>      tkMuonBx;
     std::vector<int>      tkMuonQuality;
-
+    std::vector<double>   tkMuonzVtx;
 
     unsigned int nMet;
     std::vector<double> et;
