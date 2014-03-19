@@ -14,9 +14,20 @@ process.load("Configuration.StandardSequences.RawToDigi_Data_cff")
 process.load('Configuration.StandardSequences.L1Reco_cff')
 process.load('Configuration.StandardSequences.Reconstruction_cff')
 process.load('Configuration/StandardSequences/EndOfProcess_cff')
-process.load('Configuration.Geometry.GeometryIdeal_cff')
-process.load('Configuration/StandardSequences/MagneticField_AutoFromDBCurrent_cff')
+#process.load('Configuration.Geometry.GeometryIdeal_cff')
+
+process.load('Configuration.EventContent.EventContent_cff')
+
+process.load('Configuration.StandardSequences.MagneticField_38T_cff')
+process.load('IOMC.EventVertexGenerators.VtxSmearedGauss_cfi')
+
+process.load('Configuration.Geometry.GeometryExtendedPhase2TkBE5DReco_cff')
+process.load('Configuration.Geometry.GeometryExtendedPhase2TkBE5D_cff')
+process.load('Geometry.TrackerGeometryBuilder.StackedTrackerGeometry_cfi')
+
+#process.load('Configuration/StandardSequences/MagneticField_AutoFromDBCurrent_cff')
 process.load("JetMETCorrections.Configuration.DefaultJEC_cff")
+
 
 # L1 raw to digi options
 process.gctDigis.numberOfGctSamplesToUnpack = cms.uint32(5)
@@ -72,7 +83,13 @@ process.p = cms.Path(
 
 # global tag etc
 process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
-process.GlobalTag.globaltag = 'POSTLS161_V12::All'
+#process.GlobalTag.globaltag = 'POSTLS161_V12::All'
+process.GlobalTag.globaltag = 'POSTLS261_V3::All'
+
+#process.load('Configuration.StandardSequences.FrontierConditions_GlobalTag_cff')
+#from Configuration.AlCa.GlobalTag import GlobalTag
+#process.GlobalTag = GlobalTag(process.GlobalTag, 'POSTLS261_V3::All', '')
+
 
 # GCT re-emulation
 process.GlobalTag.toGet = cms.VPSet(
