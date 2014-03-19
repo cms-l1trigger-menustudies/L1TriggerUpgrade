@@ -5,24 +5,30 @@
 #ifndef L1UpgradeNtuple_h
 #define L1UpgradeNtuple_h
 
+#include <map>
 #include <vector>
 #include <string>
 #include <iostream>
 #include <fstream>
 
+#include <TMath.h>
 #include <TROOT.h>
+#include <TStyle.h>
 #include <TChain.h>
 #include <TFile.h>
 #include <TTree.h>
 #include <TFriendElement.h>
 #include <TList.h>
 #include <TMatrix.h>
+#include <TF1.h>
 #include <TH1D.h>
 #include <TH1F.h>
 #include <TH2D.h>
 #include <TH2F.h>
 #include <TCanvas.h>
-
+#include <TLegend.h>
+#include <TLorentzVector.h>
+#include <TGraphAsymmErrors.h>
 #include "L1AnalysisEventDataFormat.h"
 #include "L1AnalysisGCTDataFormat.h"
 #include "L1AnalysisGTDataFormat.h"
@@ -108,9 +114,6 @@ public:
   L1Analysis::L1AnalysisSimulationDataFormat      *sim_;
   L1Analysis::L1AnalysisGeneratorDataFormat      *gen_;
 
-
-
-
   L1UpgradeNtuple();
   L1UpgradeNtuple(const std::string & fname);
 
@@ -124,6 +127,12 @@ public:
   //virtual void     Loop();
   void     Test();
   void     Test2();
+  double deltaPhi(double phi1, double phi2);
+  double deltaR(double eta1, double phi1, double eta2, double phi2);
+  //  double expgaus(double *x, double *par);
+  
+  //TGraphAsymmErrors *drawEff(TH1D *hname1, TH1D *hname2, TString header, TString xtitle, int rebin, float xlow, float xhigh, float xmin, float xmax, int icol, int imark, TString draw, double mup);
+
   Long64_t GetEntries();
 
  private :
@@ -384,9 +393,9 @@ void L1UpgradeNtuple::Init()
    rct_   = new L1Analysis::L1AnalysisRCTDataFormat();
    dttf_  = new L1Analysis::L1AnalysisDTTFDataFormat();
    csctf_ = new L1Analysis::L1AnalysisCSCTFDataFormat();
-	sim_   = new L1Analysis::L1AnalysisSimulationDataFormat();
-	gen_   = new L1Analysis::L1AnalysisGeneratorDataFormat();
-	calo_  = new L1Analysis::L1AnalysisCaloTPDataFormat();
+   sim_   = new L1Analysis::L1AnalysisSimulationDataFormat();
+   gen_   = new L1Analysis::L1AnalysisGeneratorDataFormat();
+   calo_  = new L1Analysis::L1AnalysisCaloTPDataFormat();
 
    std::cout<<"Setting branch addresses for L1Tree...  "<<std::flush;
 

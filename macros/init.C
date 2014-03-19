@@ -26,11 +26,12 @@
   std::cout << "L1Ntuple library loading ..." <<std::endl;
   gROOT->ProcessLine(".L L1UpgradeNtuple.C+");
 
+  /*
   std::cout << "L1Menu2015 library loading ..." <<std::endl;
   gROOT->ProcessLine(".L L1Menu2015.C+");
 
   std::cout << "EvaluateL1Menu library loading ..." <<std::endl;
   gROOT->ProcessLine(".L EvaluateL1Menu.C+");
-
+  */
   std::cout << "---- initialization done ----"<<std::endl;
 }
