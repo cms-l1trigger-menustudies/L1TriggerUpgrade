@@ -38,8 +38,8 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkEG(const edm::Handle<l1extra::L1
     l1extra_.tkEGEt .push_back(it->et());
     l1extra_.tkEGEta.push_back(it->eta());
     l1extra_.tkEGPhi.push_back(it->phi());
-    //    l1extra_.tkEGzVtx.push_back(it->);
-    l1extra_.tkEGIso.push_back(it->getTrkIsol());
+    l1extra_.tkEGzVtx.push_back(it->getTrkzVtx());
+    l1extra_.tkEGTrkIso.push_back(it->getTrkIsol());
     l1extra_.tkEGBx.push_back(0);//it->bx());
     l1extra_.nTkEG++;
   }
@@ -51,7 +51,8 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkIsoEG(const edm::Handle<l1extra:
     l1extra_.tkIsoEGEt .push_back(it->et());
     l1extra_.tkIsoEGEta.push_back(it->eta());
     l1extra_.tkIsoEGPhi.push_back(it->phi());
-    l1extra_.tkIsoEGIso.push_back(it->getTrkIsol());
+    l1extra_.tkIsoEGzVtx.push_back(it->getTrkzVtx());
+    l1extra_.tkIsoEGTrkIso.push_back(it->getTrkIsol());
     l1extra_.tkIsoEGBx.push_back(0);//it->bx());
     l1extra_.nTkIsoEG++;
   }
@@ -107,6 +108,8 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkTau(const edm::Handle<l1extra::L
     l1extra_.tkTauEt.push_back(it->et());
     l1extra_.tkTauEta.push_back(it->eta());
     l1extra_.tkTauPhi.push_back(it->phi());
+    l1extra_.tkTauzVtx.push_back(it->getTrkzVtx());
+    l1extra_.tkTauTrkIso.push_back(it->getTrkIsol());
     l1extra_.tkTauBx.push_back(0);//it->bx());
     l1extra_.nTkTau++;
   }
@@ -188,11 +191,12 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkMuon(const edm::Handle<l1extra::
     l1extra_.tkMuonEta.push_back(it->eta());
     l1extra_.tkMuonPhi.push_back(it->phi());
     l1extra_.tkMuonChg.push_back(it->charge());
-    // l1extra_.tkMuonIso.push_back(it->isIsolated());
+    l1extra_.tkMuonTrkIso.push_back(it->getTrkIsol());
+    //    l1extra_.tkMuonIso.push_back(it->isIsolated());
     // l1extra_.tkMuonMip.push_back(it->isMip());
     // l1extra_.tkMuonFwd.push_back(it->isForward());
     //l1extra_.tkMuonRPC.push_back(it->isRPC());
-    //    l1extra_.tkMuonzVtx.push_back(it->);
+    l1extra_.tkMuonzVtx.push_back(it->getTrkzVtx());
     l1extra_.tkMuonBx .push_back(0);//it->bx());
     // l1extra_.tkMuonQuality .push_back(it->gmtMuonCand().quality());
 
