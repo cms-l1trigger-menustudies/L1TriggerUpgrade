@@ -48,6 +48,8 @@ Implementation:
 #include "DataFormats/L1TrackTrigger/interface/L1TkElectronParticleFwd.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkJetParticle.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkJetParticleFwd.h"
+#include "DataFormats/L1TrackTrigger/interface/L1TkTauParticle.h"
+#include "DataFormats/L1TrackTrigger/interface/L1TkTauParticleFwd.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkHTMissParticle.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkHTMissParticleFwd.h"
 
@@ -107,7 +109,7 @@ private:
   edm::InputTag tkTauLabel_;
   edm::InputTag tkJetLabel_;
   edm::InputTag tkMetLabel_;
-
+  edm::InputTag tkMhtLabel_;
 
 };
 
@@ -130,8 +132,8 @@ L1ExtraUpgradeTreeProducer::L1ExtraUpgradeTreeProducer(const edm::ParameterSet& 
   tkMuonLabel_(iConfig.getUntrackedParameter("tkMuonLabel",edm::InputTag(""))),
   tkTauLabel_(iConfig.getUntrackedParameter("tkTauLabel",edm::InputTag(""))),
   tkJetLabel_(iConfig.getUntrackedParameter("tkJetLabel",edm::InputTag(""))),
-  tkMetLabel_(iConfig.getUntrackedParameter("tkMetLabel",edm::InputTag("")))
-
+  tkMetLabel_(iConfig.getUntrackedParameter("tkMetLabel",edm::InputTag(""))),
+  tkMhtLabel_(iConfig.getUntrackedParameter("tkMhtLabel",edm::InputTag("")))
 
 {
  
@@ -181,10 +183,10 @@ L1ExtraUpgradeTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSe
   edm::Handle<l1extra::L1TkElectronParticleCollection> tkIsoEG;
   edm::Handle<l1extra::L1TkEmParticleCollection> tkEM;
   edm::Handle<l1extra::L1TkMuonParticleCollection> tkMuon;
-  edm::Handle<l1extra::L1TkJetParticleCollection> tkTau;
+  edm::Handle<l1extra::L1TkTauParticleCollection> tkTau;
   edm::Handle<l1extra::L1TkJetParticleCollection> tkJet;
   edm::Handle<l1extra::L1TkEtMissParticleCollection> tkMets;
-
+  edm::Handle<l1extra::L1TkHTMissParticleCollection> tkMhts;
 
   iEvent.getByLabel(egLabel_, eg);
   iEvent.getByLabel(isoEGLabel_, isoEG);
@@ -203,7 +205,7 @@ L1ExtraUpgradeTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSe
   iEvent.getByLabel(tkTauLabel_, tkTau);
   iEvent.getByLabel(tkJetLabel_, tkJet);
   iEvent.getByLabel(tkMetLabel_, tkMets);
-
+  iEvent.getByLabel(tkMhtLabel_, tkMhts);
 
   if (eg.isValid()){ 
     l1Extra->SetEG(eg, maxL1Extra_);
@@ -298,6 +300,12 @@ L1ExtraUpgradeTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSe
   } else {
     edm::LogWarning("MissingProduct") << "L1ExtraUpgrade MHT not found (" << mhtLabel_ << "). Branch will not be filled" << std::endl;
   }
+  if (tkMhts.isValid()){
+    l1Extra->SetTkMht(tkMhts);
+  } else {
+    edm::LogWarning("MissingProduct") << "L1ExtraUpgrade TkMHT not found (" << tkMhtLabel_ << "). Branch will not be filled" << std::endl;
+  }
+
 
   tree_->Fill();
 
