@@ -10,10 +10,13 @@ l1ExtraUpgradeTreeProducer = cms.EDAnalyzer("L1ExtraUpgradeTreeProducer",
     
    tauLabel = cms.untracked.InputTag("SLHCL1ExtraParticles:Taus"),
    isoTauLabel = cms.untracked.InputTag("SLHCL1ExtraParticles:IsoTaus"),
+   tkTauLabel = cms.untracked.InputTag("L1TkTauFromCalo",""),                                            
+
    jetLabel = cms.untracked.InputTag("L1TowerJetPUSubtractedProducer:PUSubCen8x8"),
 
    tkMuonLabel = cms.untracked.InputTag("L1TkMuons",""),                                            
-   tkJetLabel = cms.untracked.InputTag("L1TkJets","Central"),                                            
+#  tkJetLabel = cms.untracked.InputTag("L1TkJets","Central"),                                            
+   tkJetLabel = cms.untracked.InputTag("L1TkJetsHI","Central"),  ## Use the HI HLT version of L1Jets                                          
    
    fwdJetLabel = cms.untracked.InputTag("l1extraParticles","Forward"),
    #L1CalibFilterTowerJetProducer:Fwd8x8"),
@@ -22,5 +25,7 @@ l1ExtraUpgradeTreeProducer = cms.EDAnalyzer("L1ExtraUpgradeTreeProducer",
    tkMetLabel = cms.untracked.InputTag("L1TkEtMiss","MET"),
                                             
    mhtLabel = cms.untracked.InputTag("L1CalibFilterTowerJetProducer:TowerMHT"),
+   tkMhtLabel = cms.untracked.InputTag("L1TkHTMissCaloHI",""),                                            
+
    maxL1Extra = cms.uint32(20)
 )
