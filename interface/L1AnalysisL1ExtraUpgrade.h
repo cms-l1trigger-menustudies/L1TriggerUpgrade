@@ -31,6 +31,8 @@
 #include "DataFormats/L1TrackTrigger/interface/L1TkElectronParticleFwd.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkJetParticle.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkJetParticleFwd.h"
+#include "DataFormats/L1TrackTrigger/interface/L1TkTauParticle.h"
+#include "DataFormats/L1TrackTrigger/interface/L1TkTauParticleFwd.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkHTMissParticle.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkHTMissParticleFwd.h"
 
@@ -60,10 +62,10 @@ namespace L1Analysis
     void SetTkEG   (const edm::Handle<l1extra::L1TkElectronParticleCollection>   tkEG,     unsigned maxL1Extra);
     void SetTkIsoEG(const edm::Handle<l1extra::L1TkElectronParticleCollection>   tkIsoEG,     unsigned maxL1Extra);
     void SetTkMuon (const edm::Handle<l1extra::L1TkMuonParticleCollection> tkMuon,   unsigned maxL1Extra);
-    void SetTkTau  (const edm::Handle<l1extra::L1TkJetParticleCollection> tkTau, unsigned maxL1Extra);
+    void SetTkTau  (const edm::Handle<l1extra::L1TkTauParticleCollection> tkTau, unsigned maxL1Extra);
     void SetTkJet  (const edm::Handle<l1extra::L1TkJetParticleCollection>  tkJet,    unsigned maxL1Extra);
     void SetTkMet  (const edm::Handle<l1extra::L1TkEtMissParticleCollection> tkMets);
-    
+    void SetTkMht  (const edm::Handle<l1extra::L1TkHTMissParticleCollection> tkMhts);
 
     L1AnalysisL1ExtraUpgradeDataFormat * getData() {return &l1extra_;}
 
