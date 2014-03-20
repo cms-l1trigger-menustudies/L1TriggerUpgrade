@@ -38,7 +38,7 @@ namespace L1Analysis
       tkEGEta.clear();
       tkEGPhi.clear();
       tkEGBx.clear();
-      tkEGIso.clear();
+      tkEGTrkIso.clear();
       tkEGzVtx.clear();
 
       nTkIsoEG = 0;
@@ -46,7 +46,8 @@ namespace L1Analysis
       tkIsoEGEta.clear();
       tkIsoEGPhi.clear();
       tkIsoEGBx.clear();
-      tkIsoEGIso.clear();
+      tkIsoEGTrkIso.clear();
+      tkIsoEGzVtx.clear();
 
       nTkEM = 0;
       tkEMEt.clear();
@@ -72,7 +73,8 @@ namespace L1Analysis
       tkTauEta.clear();
       tkTauPhi.clear();
       tkTauBx.clear();
-
+      tkTauTrkIso.clear();
+      tkTauzVtx.clear();
 
       nJets = 0;
       jetEt.clear();
@@ -112,7 +114,7 @@ namespace L1Analysis
       tkMuonEta.clear();
       tkMuonPhi.clear();
       tkMuonChg.clear();
-      tkMuonIso.clear();
+      tkMuonTrkIso.clear();
       tkMuonFwd.clear();
       tkMuonMip.clear();
       tkMuonRPC.clear();
@@ -167,7 +169,7 @@ namespace L1Analysis
     std::vector<double> tkEGEta;
     std::vector<double> tkEGPhi;
     std::vector<int>    tkEGBx;
-    std::vector<double> tkEGIso;
+    std::vector<double> tkEGTrkIso;
     std::vector<double> tkEGzVtx;
 
     unsigned int nTkIsoEG;
@@ -175,7 +177,8 @@ namespace L1Analysis
     std::vector<double> tkIsoEGEta;
     std::vector<double> tkIsoEGPhi;
     std::vector<int>    tkIsoEGBx;
-    std::vector<double> tkIsoEGIso;
+    std::vector<double> tkIsoEGTrkIso;
+    std::vector<double> tkIsoEGzVtx;
 
     unsigned int nTkEM;
     std::vector<double> tkEMEt;
@@ -201,6 +204,9 @@ namespace L1Analysis
     std::vector<double> tkTauEta;
     std::vector<double> tkTauPhi;
     std::vector<int>    tkTauBx;
+    std::vector<double> tkTauTrkIso;
+    std::vector<double> tkTauzVtx;
+
 
     unsigned int nJets;
     std::vector<double> jetEt;
@@ -239,6 +245,7 @@ namespace L1Analysis
     std::vector<double>   tkMuonPhi;
     std::vector<int>      tkMuonChg;
     std::vector<unsigned int> tkMuonIso;
+    std::vector<double> tkMuonTrkIso;
     std::vector<unsigned int> tkMuonFwd;
     std::vector<unsigned int> tkMuonMip;
     std::vector<unsigned int> tkMuonRPC;
