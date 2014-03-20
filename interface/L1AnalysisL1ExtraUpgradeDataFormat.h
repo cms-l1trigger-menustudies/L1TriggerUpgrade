@@ -140,6 +140,14 @@ namespace L1Analysis
       mhtPhi.clear();
       mhtBx.clear();
 
+      //TkMht
+      nTkMht = 0;
+      tkHt.clear();
+      tkMht.clear();
+      tkMhtPhi.clear();
+      tkMhtBx.clear();
+
+
     }
    
     unsigned int nEG;
@@ -255,6 +263,14 @@ namespace L1Analysis
     std::vector<double> mht;
     std::vector<double> mhtPhi;
     std::vector<double> mhtBx;
+
+    unsigned int nTkMht;
+    std::vector<double> tkHt;
+    std::vector<double> tkMht;
+    std::vector<double> tkMhtPhi;
+    std::vector<double> tkMhtBx;
+
+
 
   }; 
 }
