@@ -36,6 +36,8 @@ namespace L1Analysis
        PhiTkel.clear();
        EtaTkel.clear();
        IsoTkel.clear();
+       tIsoTkel.clear();
+       zVtxTkel.clear();
 
     	//track Taus info
        NTktau = 0;
@@ -44,7 +46,9 @@ namespace L1Analysis
        PhiTktau.clear();
        EtaTktau.clear();
        IsoTktau.clear();
-
+       tIsoTktau.clear();
+       zVtxTktau.clear();
+       
        
        // calo Jets
        Njet = 0;
@@ -62,7 +66,7 @@ namespace L1Analysis
        EtTkjet.clear();
        PhiTkjet.clear();
        EtaTkjet.clear();
-       
+       zVtxTkjet.clear();
 	
 	// muons	 
        Nmu = 0;
@@ -81,6 +85,8 @@ namespace L1Analysis
        EtaTkmu.clear();
        QualTkmu.clear();
        IsoTkmu.clear();
+       tIsoTkmu.clear();
+       zVtxTkmu.clear();
 		 
 
 // ------ ETT, ETM, HTT and HTM from PSB14:
