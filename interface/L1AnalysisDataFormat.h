@@ -39,6 +39,15 @@ namespace L1Analysis
        tIsoTkel.clear();
        zVtxTkel.clear();
 
+
+    	//TkEM info
+       NTkem = 0;
+       BxTkem.clear();
+       EtTkem.clear();
+       PhiTkem.clear();
+       EtaTkem.clear();
+
+
     	//track Taus info
        NTktau = 0;
        BxTktau.clear();
@@ -138,6 +147,14 @@ namespace L1Analysis
     std::vector<float>  zVtxTkel;
     std::vector<bool>   IsoTkel;
     std::vector<float>  tIsoTkel; 
+
+    int            NTkem;
+    std::vector<int>    BxTkem;
+    std::vector<float>  EtTkem;
+    std::vector<float>  PhiTkem;
+    std::vector<float>  EtaTkem;
+
+
 
     int            NTktau;
     std::vector<int>    BxTktau;
