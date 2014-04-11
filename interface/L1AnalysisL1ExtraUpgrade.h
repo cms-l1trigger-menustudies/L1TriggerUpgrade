@@ -60,6 +60,7 @@ namespace L1Analysis
     // Add L1TrackTriggerObjects
     void SetTkEM   (const edm::Handle<l1extra::L1TkEmParticleCollection>   tkEM,     unsigned maxL1Extra);
     void SetTkEG   (const edm::Handle<l1extra::L1TkElectronParticleCollection>   tkEG,     unsigned maxL1Extra);
+    void SetTkEG2   (const edm::Handle<l1extra::L1TkElectronParticleCollection>   tkEG2,     unsigned maxL1Extra);
     void SetTkIsoEG(const edm::Handle<l1extra::L1TkElectronParticleCollection>   tkIsoEG,     unsigned maxL1Extra);
     void SetTkMuon (const edm::Handle<l1extra::L1TkMuonParticleCollection> tkMuon,   unsigned maxL1Extra);
     void SetTkTau  (const edm::Handle<l1extra::L1TkTauParticleCollection> tkTau, unsigned maxL1Extra);

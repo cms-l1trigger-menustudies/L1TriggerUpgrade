@@ -41,6 +41,15 @@ namespace L1Analysis
       tkEGTrkIso.clear();
       tkEGzVtx.clear();
 
+      // 2nd TkEG collection (TrkPt=7)
+      nTkEG2 = 0;
+      tkEG2Et.clear();
+      tkEG2Eta.clear();
+      tkEG2Phi.clear();
+      tkEG2Bx.clear();
+      tkEG2TrkIso.clear();
+      tkEG2zVtx.clear();
+
       nTkIsoEG = 0;
       tkIsoEGEt.clear();
       tkIsoEGEta.clear();
@@ -172,6 +181,15 @@ namespace L1Analysis
     std::vector<double> tkEGTrkIso;
     std::vector<double> tkEGzVtx;
 
+    unsigned int nTkEG2;
+    std::vector<double> tkEG2Et;
+    std::vector<double> tkEG2Eta;
+    std::vector<double> tkEG2Phi;
+    std::vector<int>    tkEG2Bx;
+    std::vector<double> tkEG2TrkIso;
+    std::vector<double> tkEG2zVtx;
+
+
     unsigned int nTkIsoEG;
     std::vector<double> tkIsoEGEt;
     std::vector<double> tkIsoEGEta;
@@ -250,7 +268,7 @@ namespace L1Analysis
     std::vector<unsigned int> tkMuonMip;
     std::vector<unsigned int> tkMuonRPC;
     std::vector<int>      tkMuonBx;
-    std::vector<int>      tkMuonQuality;
+    std::vector<unsigned int>      tkMuonQuality;
     std::vector<double>   tkMuonzVtx;
 
     unsigned int nMet;
