@@ -103,6 +103,7 @@ private:
   edm::InputTag mhtLabel_;
 
   edm::InputTag tkEGLabel_;
+  edm::InputTag tkEG2Label_;
   edm::InputTag tkIsoEGLabel_;
   edm::InputTag tkEMLabel_;
   edm::InputTag tkMuonLabel_;
@@ -127,6 +128,7 @@ L1ExtraUpgradeTreeProducer::L1ExtraUpgradeTreeProducer(const edm::ParameterSet& 
   mhtLabel_(iConfig.getUntrackedParameter("mhtLabel",edm::InputTag(""))),
 
   tkEGLabel_(iConfig.getUntrackedParameter("tkEGLabel",edm::InputTag(""))),
+  tkEG2Label_(iConfig.getUntrackedParameter("tkEG2Label",edm::InputTag(""))),
   tkIsoEGLabel_(iConfig.getUntrackedParameter("tkIsoEGLabel",edm::InputTag(""))),
   tkEMLabel_(iConfig.getUntrackedParameter("tkEMLabel",edm::InputTag(""))),
   tkMuonLabel_(iConfig.getUntrackedParameter("tkMuonLabel",edm::InputTag(""))),
@@ -180,6 +182,7 @@ L1ExtraUpgradeTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSe
   edm::Handle<l1extra::L1EtMissParticleCollection> mhts;
 
   edm::Handle<l1extra::L1TkElectronParticleCollection> tkEG;
+  edm::Handle<l1extra::L1TkElectronParticleCollection> tkEG2;
   edm::Handle<l1extra::L1TkElectronParticleCollection> tkIsoEG;
   edm::Handle<l1extra::L1TkEmParticleCollection> tkEM;
   edm::Handle<l1extra::L1TkMuonParticleCollection> tkMuon;
@@ -199,6 +202,7 @@ L1ExtraUpgradeTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSe
   iEvent.getByLabel(mhtLabel_, mhts);
 
   iEvent.getByLabel(tkEGLabel_, tkEG);
+  iEvent.getByLabel(tkEG2Label_, tkEG2);
   iEvent.getByLabel(tkIsoEGLabel_, tkIsoEG);
   iEvent.getByLabel(tkEMLabel_, tkEM);
   iEvent.getByLabel(tkMuonLabel_,tkMuon);
@@ -223,6 +227,12 @@ L1ExtraUpgradeTreeProducer::analyze(const edm::Event& iEvent, const edm::EventSe
   } else {
     edm::LogWarning("MissingProduct") << "L1ExtraUpgrade TkEG not found (" << tkEGLabel_ << "). Branch will not be filled" << std::endl;
   }
+  if (tkEG2.isValid()){
+    l1Extra->SetTkEG2(tkEG2, maxL1Extra_);
+  } else {
+    edm::LogWarning("MissingProduct") << "L1ExtraUpgrade TkEG2 not found (" << tkEG2Label_ << "). Branch will not be filled" << std::endl;
+  }
+
 
   if (tkIsoEG.isValid()){
     l1Extra->SetTkIsoEG(tkIsoEG, maxL1Extra_);
