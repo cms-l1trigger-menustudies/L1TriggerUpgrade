@@ -29,15 +29,15 @@ namespace L1Analysis
        Etael.clear();
        Isoel.clear();
 
-    	//tkEG info
-       NTkele = 0;
-       BxTkel.clear();
-       EtTkel.clear();
-       PhiTkel.clear();
-       EtaTkel.clear();
-       IsoTkel.clear();
-       tIsoTkel.clear();
-       zVtxTkel.clear();
+    	//tkEG info (tkEG2 for trkPt=7)
+       NTkele = 0; NTkele2 = 0;
+       BxTkel.clear(); BxTkel2.clear();
+       EtTkel.clear(); EtTkel2.clear();
+       PhiTkel.clear(); PhiTkel2.clear();
+       EtaTkel.clear(); EtaTkel2.clear();
+       IsoTkel.clear(); IsoTkel2.clear();
+       tIsoTkel.clear(); tIsoTkel2.clear();
+       zVtxTkel.clear(); zVtxTkel2.clear();
 
 
     	//TkEM info
