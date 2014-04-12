@@ -30,12 +30,12 @@ namespace L1Analysis
        Isoel.clear();
 
     	//tkEG info (tkEG2 for trkPt=7)
-       NTkele = 0; NTkele2 = 0;
-       BxTkel.clear(); BxTkel2.clear();
-       EtTkel.clear(); EtTkel2.clear();
-       PhiTkel.clear(); PhiTkel2.clear();
-       EtaTkel.clear(); EtaTkel2.clear();
-       IsoTkel.clear(); IsoTkel2.clear();
+       NTkele = 0;       NTkele2 = 0;
+       BxTkel.clear();   BxTkel2.clear();
+       EtTkel.clear();   EtTkel2.clear();
+       PhiTkel.clear();  PhiTkel2.clear();
+       EtaTkel.clear();  EtaTkel2.clear();
+       IsoTkel.clear();  IsoTkel2.clear();
        tIsoTkel.clear(); tIsoTkel2.clear();
        zVtxTkel.clear(); zVtxTkel2.clear();
 
@@ -147,6 +147,16 @@ namespace L1Analysis
     std::vector<float>  zVtxTkel;
     std::vector<bool>   IsoTkel;
     std::vector<float>  tIsoTkel; 
+
+    int            NTkele2;
+    std::vector<int>    BxTkel2;
+    std::vector<float>  EtTkel2;
+    std::vector<float>  PhiTkel2;
+    std::vector<float>  EtaTkel2;
+    std::vector<float>  zVtxTkel2;
+    std::vector<bool>   IsoTkel2;
+    std::vector<float>  tIsoTkel2; 
+
 
     int            NTkem;
     std::vector<int>    BxTkem;
