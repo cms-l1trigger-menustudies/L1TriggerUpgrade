@@ -125,13 +125,10 @@ public:
   virtual Long64_t LoadTree(Long64_t entry);
   virtual void     Init();
   //virtual void     Loop();
-  void     Test();
-  void     Test2();
+  void     testPerformance();
+  //  void     Test2();
   double deltaPhi(double phi1, double phi2);
   double deltaR(double eta1, double phi1, double eta2, double phi2);
-  //  double expgaus(double *x, double *par);
-  
-  //TGraphAsymmErrors *drawEff(TH1D *hname1, TH1D *hname2, TString header, TString xtitle, int rebin, float xlow, float xhigh, float xmin, float xmax, int icol, int imark, TString draw, double mup);
 
   Long64_t GetEntries();
 
