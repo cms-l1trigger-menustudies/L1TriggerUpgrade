@@ -12,25 +12,13 @@
 
 // Version 6
 
-std::string InputRootFileName="L1UpgradeNtuples_v22_SingleElectron_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_Tauola_TTbar_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_TauThreeProngs_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_Tauola_TTbar_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_QCD_Pt_300to470_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_Tauola_TTbar_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_SingleElectron_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_Tauola_TTbar_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_TauThreeProngs_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_Tauola_TTbar_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_SingleElectron_PU140_list.txt";
-  //"L1UpgradeNtuples_v22_QCD_Pt_300to470_PU140_list.txt";
-//"L1UpgradeNtuples_v22_SingleElectron_PU140_list.txt";
+std::string InputRootFileName="L1UpgradeNtuples_v24_Tauola_TTbar_PU140_list.txt";
+  //"L1UpgradeNtuples_v24_SingleElectron_PU140_list.txt";
+  //"L1UpgradeNtuples_v24_Tauola_TTbar_PU140_list.txt";
+//L1UpgradeNtuples_v24_SingleElectron_PU140_list.txt";
 
 L1UpgradeNtuple *myNtpl;
-/*
-EvaluateL1Menu *myEval;
-L1Menu2015 *myL1Menu;
-*/
+
 test(){
   
    gSystem->Exec("date"); //beginning time stamp
@@ -42,7 +30,7 @@ test(){
 	
 // Turn off Dumping of Events
 //   myL1Menu->SetDumpEvents(0);	
-   myNtpl->Test2();
+   myNtpl->testPerformance();
 
    return;
 
