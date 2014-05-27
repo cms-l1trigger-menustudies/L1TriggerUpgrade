@@ -22,7 +22,7 @@
 
 #include "DataFormats/L1TrackTrigger/interface/L1TkMuonParticle.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkMuonParticleFwd.h"
-#include "DataFormats/L1TrackTrigger/interface/L1TrackPrimaryVertex.h"
+#include "DataFormats/L1TrackTrigger/interface/L1TkPrimaryVertex.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkEtMissParticle.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkEtMissParticleFwd.h"
 #include "DataFormats/L1TrackTrigger/interface/L1TkEmParticle.h"
