@@ -188,12 +188,14 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetMuon(const edm::Handle<l1extra::L1
       l1extra_.muonFwd.push_back(it->isForward());
       l1extra_.muonRPC.push_back(it->isRPC());
       l1extra_.muonBx .push_back(it->bx());
+
       l1extra_.muonQuality .push_back(it->gmtMuonCand().quality());
-		
-//		std::cout << "gmtmuon cand: pt " << it->gmtMuonCand().ptValue() 
-//					<< "; ptExtra " << it->et() 
-//					<< "; qual " << it->gmtMuonCand().quality() 
-//					<< std::endl;
+      /*      		
+      std::cout << "gmtmuon cand: pt " << it->gmtMuonCand().ptValue() 
+		<< "; ptExtra " << it->et() 
+		<< "; qual " << it->gmtMuonCand().quality() 
+		<< std::endl;
+      */
       l1extra_.nMuons++;
     }
 }
@@ -213,11 +215,12 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkMuon(const edm::Handle<l1extra::
     //l1extra_.tkMuonRPC.push_back(it->isRPC());
     l1extra_.tkMuonzVtx.push_back(it->getTrkzVtx());
     l1extra_.tkMuonBx .push_back(0);//it->bx());
-
+    /*
     const edm::Ref<l1extra::L1MuonParticleCollection> MuRef = it->getMuRef();
     unsigned int qualityBis = MuRef -> gmtMuonCand().quality();
     l1extra_.tkMuonQuality .push_back(qualityBis);
-    //    l1extra_.tkMuonQuality .push_back(it->quality());
+    */
+    l1extra_.tkMuonQuality .push_back(it->quality());
 
     l1extra_.nTkMuons++;
   }

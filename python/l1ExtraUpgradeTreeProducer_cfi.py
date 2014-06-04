@@ -5,23 +5,26 @@ l1ExtraUpgradeTreeProducer = cms.EDAnalyzer("L1ExtraUpgradeTreeProducer",
    isoEGLabel = cms.untracked.InputTag("SLHCL1ExtraParticlesNewClustering","IsoEGamma"),
 
    tkEGLabel = cms.untracked.InputTag("L1TkElectronsNewclus","EG"),
-   tkEG2Label = cms.untracked.InputTag("L1TkElectronsNewclusTrkPt7","EG"),
+   tkEG2Label = cms.untracked.InputTag("L1TkElectronsLoose","EG"),
+
    tkIsoEGLabel = cms.untracked.InputTag("L1TkIsoElectronsNewclus","EG"),
-   tkEMLabel = cms.untracked.InputTag("L1TkPhotonsNewclus","IsoTrk"),
+   tkEMLabel = cms.untracked.InputTag("L1TkPhotonsNewclus","EG"),
     
    tauLabel = cms.untracked.InputTag("SLHCL1ExtraParticles:Taus"),
    isoTauLabel = cms.untracked.InputTag("SLHCL1ExtraParticles:IsoTaus"),
-   tkTauLabel = cms.untracked.InputTag("L1TkTauFromCalo",""),                                            
+   tkTauLabel = cms.untracked.InputTag("L1TkTauFromL1Track",""),                                            
 
 #   jetLabel = cms.untracked.InputTag("L1TowerJetPUSubtractedProducer:PUSubCen8x8"),
    jetLabel = cms.untracked.InputTag("L1CalibFilterTowerJetProducer","CalibratedTowerJets"),   # Calib L1jets                                            
-   tkMuonLabel = cms.untracked.InputTag("L1TkMuons",""),                                            
+
+   tkMuonLabel = cms.untracked.InputTag("L1TkMuonsMerge",""),                                            
+
    tkJetLabel = cms.untracked.InputTag("L1TkJets","Central"),                                            
 #   tkJetLabel = cms.untracked.InputTag("L1TkJetsHI","Central"),  ## Use the HI HLT version of L1Jets                                          
 
    fwdJetLabel = cms.untracked.InputTag("l1extraParticles","Forward"),
-   #L1CalibFilterTowerJetProducer:Fwd8x8"),
-   muonLabel = cms.untracked.InputTag("l1UpgradeMuonIsolator"),
+
+   muonLabel = cms.untracked.InputTag("l1extraParticles"), #l1UpgradeMuonIsolator"),
    metLabel = cms.untracked.InputTag("L1EnergySumProducer","MET"),
    #metLabel = cms.untracked.InputTag("rawSLHCL1ExtraParticles:MET"),
    tkMetLabel = cms.untracked.InputTag("L1TkEtMiss","MET"),
