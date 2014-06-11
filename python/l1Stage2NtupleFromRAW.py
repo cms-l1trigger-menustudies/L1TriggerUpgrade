@@ -13,6 +13,8 @@ process.load('UserCode.L1TriggerUpgrade.l1UpgradeMuonIsolator_cfi')
 # load the upgrade tree
 process.load('UserCode.L1TriggerUpgrade.l1ExtraUpgradeTreeProducer_cfi')
 
+process.load("SLHCUpgradeSimulations.L1TrackTrigger.L1TrackingSequence_cfi")
+process.p += process.DefaultTrackingSequence 
 
 #Need the L1Tracks and the L1Vertex
 process.load('Configuration.StandardSequences.L1TrackTrigger_cff')
@@ -42,6 +44,10 @@ from SimCalorimetry.HcalTrigPrimProducers.hcaltpdigi_cff import HcalTPGCoderULUT
 HcalTPGCoderULUT.LUTGenerationMode = cms.bool(True)
 process.valRctDigis.hcalDigis             = cms.VInputTag(cms.InputTag('valHcalTriggerPrimitiveDigis'))
 process.L1CaloTowerProducer.HCALDigis =  cms.InputTag("valHcalTriggerPrimitiveDigis")
+
+ # needed because the calo stuff above clashes with the DTs
+process.es_prefer_dt = cms.ESPrefer("DTConfigTrivialProducer","L1DTConfig")
+ 
 
 # --- Load the L1TkCaloSequence :
 
