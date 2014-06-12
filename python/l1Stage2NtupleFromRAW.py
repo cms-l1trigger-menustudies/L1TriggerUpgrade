@@ -17,17 +17,17 @@ process.load("SLHCUpgradeSimulations.L1TrackTrigger.L1TrackingSequence_cfi")
 process.p += process.DefaultTrackingSequence 
 
 #Need the L1Tracks and the L1Vertex
-process.load('Configuration.StandardSequences.L1TrackTrigger_cff')
-process.p += process.TrackTriggerTTTracks
-#process.p += process.L1TkStubsFromPixelDigis 
+#process.load('Configuration.StandardSequences.L1TrackTrigger_cff')
+#process.p += process.TrackTriggerTTTracks
+
 
 # --- now we runn the L1Track producer :
-process.BeamSpotFromSim =cms.EDProducer("BeamSpotFromSimProducer")
+#process.BeamSpotFromSim =cms.EDProducer("BeamSpotFromSimProducer")
 
-process.load('Geometry.TrackerGeometryBuilder.StackedTrackerGeometry_cfi') 
-process.load("SLHCUpgradeSimulations.L1TrackTrigger.L1TTrack_cfi")
-process.L1Tracks.geometry = cms.untracked.string('BE5D')
-process.p += process.BeamSpotFromSim*process.L1Tracks 
+#process.load('Geometry.TrackerGeometryBuilder.StackedTrackerGeometry_cfi') 
+#process.load("SLHCUpgradeSimulations.L1TrackTrigger.L1TTrack_cfi")
+#process.L1Tracks.geometry = cms.untracked.string('BE5D')
+#process.p += process.BeamSpotFromSim*process.L1Tracks 
 
 
 process.load("SLHCUpgradeSimulations.L1TrackTrigger.L1TkPrimaryVertexProducer_cfi")
