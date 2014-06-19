@@ -71,19 +71,28 @@ void L1UpgradeNtuple::testPerformance()
   TH1D *hJet250 = new TH1D("hjet250","",100,0.,1000.);
   TH1D *hJet300 = new TH1D("hjet300","",100,0.,1000.);
   // TAUS
-  TH1D *hTaugen = new TH1D("htaugen","",100,0.,1000.);
-  TH1D *hTau30 = new TH1D("htau30","",100,0.,1000.);
-  TH1D *hTau45 = new TH1D("htau45","",100,0.,1000.);
-  TH1D *hTau60 = new TH1D("htau60","",100,0.,1000.);
-  TH1D *hTau75 = new TH1D("htau75","",100,0.,1000.);
-  TH1D *hTau90 = new TH1D("htau90","",100,0.,1000.);
+  TH1D *hTaugen = new TH1D("htaugen","",1000,0.,1000.);
+  TH1D *hTau30 = new TH1D("htau30","",1000,0.,1000.);
+  TH1D *hTau45 = new TH1D("htau45","",1000,0.,1000.);
+  TH1D *hTau60 = new TH1D("htau60","",1000,0.,1000.);
+  TH1D *hTau75 = new TH1D("htau75","",1000,0.,1000.);
+  TH1D *hTau90 = new TH1D("htau90","",1000,0.,1000.);
 
-  TH1D *hisoTaugen = new TH1D("hisotaugen","",100,0.,1000.);
-  TH1D *hIsoTau30 = new TH1D("hisotau30","",100,0.,1000.);
-  TH1D *hIsoTau45 = new TH1D("hisotau45","",100,0.,1000.);
-  TH1D *hIsoTau60 = new TH1D("hisotau60","",100,0.,1000.);
-  TH1D *hIsoTau75 = new TH1D("hisotau75","",100,0.,1000.);
-  TH1D *hIsoTau90 = new TH1D("hisotau90","",100,0.,1000.);
+  TH1D *hisoTaugen = new TH1D("hisotaugen","",1000,0.,1000.);
+  TH1D *hIsoTau30 = new TH1D("hisotau30","",1000,0.,1000.);
+  TH1D *hIsoTau45 = new TH1D("hisotau45","",1000,0.,1000.);
+  TH1D *hIsoTau60 = new TH1D("hisotau60","",1000,0.,1000.);
+  TH1D *hIsoTau75 = new TH1D("hisotau75","",1000,0.,1000.);
+  TH1D *hIsoTau90 = new TH1D("hisotau90","",1000,0.,1000.);
+
+  TH1D *htkTaugen = new TH1D("htktaugen","",1000,0.,1000.);
+  TH1D *htkTau10 = new TH1D("htktau10","",1000,0.,1000.);
+  TH1D *htkTau20 = new TH1D("htktau20","",1000,0.,1000.);
+  TH1D *htkTau30 = new TH1D("htktau30","",1000,0.,1000.);
+  TH1D *htkTau45 = new TH1D("htktau45","",1000,0.,1000.);
+  TH1D *htkTau60 = new TH1D("htktau60","",1000,0.,1000.);
+  TH1D *htkTau75 = new TH1D("htktau75","",1000,0.,1000.);
+  TH1D *htkTau90 = new TH1D("htktau90","",1000,0.,1000.);
 
    // EGAMMA
   TH1D *hEGgen = new TH1D("heggen","",25,0.,50.);
@@ -207,16 +216,15 @@ void L1UpgradeNtuple::testPerformance()
     // ---------------------------------------------------------------------------------------------------------------------------
     // TAU analysis
 
-    if (itau==2) {
+    //    if (itau==2) {
       // Exclude leptonically decayed Taus
-       for (int j=0; j<gen_->id.size(); j++) {
-	 //if (gen_->status.at(j)!=3) {
-	if  ( gen_->status.at(j)!=3 && (abs(gen_->id.at(j))==11 || abs(gen_->id.at(j))==13) && gen_->parent_id.at(j)==-15) {
-	  itau--; mtau=-1;  }
-	if  ( gen_->status.at(j)!=3 && (abs(gen_->id.at(j))==11 || abs(gen_->id.at(j))==13) && gen_->parent_id.at(j)==15) {
-	  itau--; ptau=-1;  }
-       } 
-    }
+    for (int j=0; j<gen_->id.size(); j++) {
+      if  ( gen_->status.at(j)!=3 && (abs(gen_->id.at(j))==11 || abs(gen_->id.at(j))==13) && gen_->parent_id.at(j)==-15) {
+	itau--; mtau=-1;  }
+      if  ( gen_->status.at(j)!=3 && (abs(gen_->id.at(j))==11 || abs(gen_->id.at(j))==13) && gen_->parent_id.at(j)==15) {
+	itau--; ptau=-1;  }
+    } 
+       // }
 
     if (ptau>0) {
       tauplus.SetPxPyPzE(gen_->px.at(ptau),gen_->py.at(ptau),gen_->pz.at(ptau),gen_->e.at(ptau));
@@ -248,23 +256,25 @@ void L1UpgradeNtuple::testPerformance()
       //      std::cout << "Tau- visible pT = " << tauminus.Pt() << std::endl;
     }
 
-    if (itau>=1) { 
+    // At least 1 GEN tau decayed hadronically
+    if (itau>0) { 
  
-      int iTau=-1;
-      double dr; 
-      double drmax=0.5; 
-      double dpt; double dptmin=0.; 
+      int iTau;
+      
+      double dr; double drmax; 
+      double dpt; double dptmin;
 
       if (ptau>0) {
 	//	tauplus.SetPxPyPzE(gen_->px.at(ptau),gen_->py.at(ptau),gen_->pz.at(ptau),gen_->e.at(ptau));
 
 	if ( fabs(tauplus.Eta()) < 2.4) {
 
+	  iTau=-1; drmax=0.5; dptmin=0.;
 	// Loop over Taus
-	  for (Int_t i=0; i<l1upgrade_->nTkTau; i++) {
+	  for (Int_t i=0; i<l1upgrade_->nTau; i++) {
 	    
-	    dpt=l1upgrade_->tkTauEt.at(i) ;
-	    dr=deltaR(tauplus.Eta(),tauplus.Phi(),l1upgrade_->tkTauEta.at(i),l1upgrade_->tkTauPhi.at(i));
+	    dpt=l1upgrade_->tauEt.at(i) ;
+	    dr=deltaR(tauplus.Eta(),tauplus.Phi(),l1upgrade_->tauEta.at(i),l1upgrade_->tauPhi.at(i));
 	    
 	    if (dr<drmax && dpt>dptmin) { 
 	      drmax=dr; dptmin=dpt; iTau=i; }
@@ -275,11 +285,11 @@ void L1UpgradeNtuple::testPerformance()
 	    
 	    hTaugen->Fill(tauplus_vis.Pt());
 	    
-	    if (l1upgrade_->tkTauEt.at(iTau)>=30.) hTau30->Fill(tauplus_vis.Pt());
-	    if (l1upgrade_->tkTauEt.at(iTau)>=45.) hTau45->Fill(tauplus_vis.Pt());
-	    if (l1upgrade_->tkTauEt.at(iTau)>=60.) hTau60->Fill(tauplus_vis.Pt());
-	    if (l1upgrade_->tkTauEt.at(iTau)>=75.) hTau75->Fill(tauplus_vis.Pt());
-	    if (l1upgrade_->tkTauEt.at(iTau)>=90.) hTau90->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tauEt.at(iTau)>=30.) hTau30->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tauEt.at(iTau)>=45.) hTau45->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tauEt.at(iTau)>=60.) hTau60->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tauEt.at(iTau)>=75.) hTau75->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tauEt.at(iTau)>=90.) hTau90->Fill(tauplus_vis.Pt());
 	    
 	  } // end found match
 	  
@@ -305,6 +315,33 @@ void L1UpgradeNtuple::testPerformance()
 	    
 	  }
 
+	  // TkTaus
+	  iTau=-1; drmax=0.5; dptmin=0.;
+	// Loop over Taus
+	  for (Int_t i=0; i<l1upgrade_->nTkTau; i++) {
+	    
+	    dpt=l1upgrade_->tkTauEt.at(i) ;
+	    dr=deltaR(tauplus.Eta(),tauplus.Phi(),l1upgrade_->tkTauEta.at(i),l1upgrade_->tkTauPhi.at(i));
+	    
+	    if (dr<drmax && dpt>dptmin) { 
+	      drmax=dr; dptmin=dpt; iTau=i; }
+	  } // End loop L1jets
+	  
+	  if (iTau>=0) { // gen-L1 jet match
+	    //	std::cout << "Kept tau with Et= " << dptmin << std::endl;
+	    
+	    htkTaugen->Fill(tauplus_vis.Pt());
+	    
+	    if (l1upgrade_->tkTauEt.at(iTau)>=10.) htkTau10->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=20.) htkTau20->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=30.) htkTau30->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=45.) htkTau45->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=60.) htkTau60->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=75.) htkTau75->Fill(tauplus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=90.) htkTau90->Fill(tauplus_vis.Pt());
+	    
+	  } // end found match
+
 	} // gen tau eta restriction
 
       } // if TAU+
@@ -316,11 +353,11 @@ void L1UpgradeNtuple::testPerformance()
 
 	  iTau=-1; drmax=0.5; dptmin=0.;
 	  // Loop over Taus
-	  for (Int_t i=0; i<l1upgrade_->nTkTau; i++) {
+	  for (Int_t i=0; i<l1upgrade_->nTau; i++) {
 	    
-	    dpt=l1upgrade_->tkTauEt.at(i) ;
+	    dpt=l1upgrade_->tauEt.at(i) ;
 	    
-	    dr=deltaR(tauminus.Eta(),tauminus.Phi(),l1upgrade_->tkTauEta.at(i),l1upgrade_->tkTauPhi.at(i));
+	    dr=deltaR(tauminus.Eta(),tauminus.Phi(),l1upgrade_->tauEta.at(i),l1upgrade_->tauPhi.at(i));
 	    
 	    if (dr<drmax && dpt>dptmin) { 
 	      drmax=dr; dptmin=dpt; iTau=i; }
@@ -329,11 +366,11 @@ void L1UpgradeNtuple::testPerformance()
 	  if (iTau>=0) { // gen-L1 jet match
 	    hTaugen->Fill(tauminus_vis.Pt());
 	    
-	    if (l1upgrade_->tkTauEt.at(iTau)>=30.) hTau30->Fill(tauminus_vis.Pt());
-	    if (l1upgrade_->tkTauEt.at(iTau)>=45.) hTau45->Fill(tauminus_vis.Pt());
-	    if (l1upgrade_->tkTauEt.at(iTau)>=60.) hTau60->Fill(tauminus_vis.Pt());
-	    if (l1upgrade_->tkTauEt.at(iTau)>=75.) hTau75->Fill(tauminus_vis.Pt());
-	    if (l1upgrade_->tkTauEt.at(iTau)>=90.) hTau90->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tauEt.at(iTau)>=30.) hTau30->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tauEt.at(iTau)>=45.) hTau45->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tauEt.at(iTau)>=60.) hTau60->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tauEt.at(iTau)>=75.) hTau75->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tauEt.at(iTau)>=90.) hTau90->Fill(tauminus_vis.Pt());
 	    
 	  } // end found match
 	  
@@ -359,10 +396,37 @@ void L1UpgradeNtuple::testPerformance()
 	    
 	  }
 
+	  // TkTaus
+	  iTau=-1; drmax=0.5; dptmin=0.;
+	  // Loop over Taus
+	  for (Int_t i=0; i<l1upgrade_->nTkTau; i++) {
+	    
+	    dpt=l1upgrade_->tkTauEt.at(i) ;
+	    
+	    dr=deltaR(tauminus.Eta(),tauminus.Phi(),l1upgrade_->tkTauEta.at(i),l1upgrade_->tkTauPhi.at(i));
+	    
+	    if (dr<drmax && dpt>dptmin) { 
+	      drmax=dr; dptmin=dpt; iTau=i; }
+	  } // End loop L1jets
+	  
+	  if (iTau>=0) { // gen-L1 jet match
+	    htkTaugen->Fill(tauminus_vis.Pt());
+	    
+	    if (l1upgrade_->tkTauEt.at(iTau)>=10.) htkTau10->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=20.) htkTau20->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=30.) htkTau30->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=45.) htkTau45->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=60.) htkTau60->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=75.) htkTau75->Fill(tauminus_vis.Pt());
+	    if (l1upgrade_->tkTauEt.at(iTau)>=90.) htkTau90->Fill(tauminus_vis.Pt());
+	    
+	  } // end found match
+
+
 	} // gen tau eta restriction
       } //if TAU-
       
-    }
+    } // end TAU analysis
     // -----------------------------------------------------------------------------------------------------------
     // JET analysis
     // Sort partons in PT
@@ -443,7 +507,6 @@ void L1UpgradeNtuple::testPerformance()
 	  hMUgeneta->Fill(muon.Eta());
 	  
 	  //	  std::cout << "Picked up TkMuon with pT = " <<  l1upgrade_->tkMuonEt.at(iMU) << std::endl;
-
 	  if (l1upgrade_->tkMuonEt.at(iMU)>10.) hMU10->Fill(muon.Pt());
 	  if (l1upgrade_->tkMuonEt.at(iMU)>20.) hMU20->Fill(muon.Pt());
 	  if (l1upgrade_->tkMuonEt.at(iMU)>30.) hMU30->Fill(muon.Pt());
@@ -474,6 +537,7 @@ void L1UpgradeNtuple::testPerformance()
     double dR;
     double dRmax=0.5;
     double dpt; double dptmin=0.0;
+
     for (Int_t i=0; i<l1upgrade_->nEG; i++) {
  
       if (i>0) break;
@@ -694,6 +758,16 @@ void L1UpgradeNtuple::testPerformance()
   hTaugen->SetDirectory(dirTAU);
   hTau30->SetDirectory(dirTAU); hTau45->SetDirectory(dirTAU); hTau60->SetDirectory(dirTAU);
   hTau75->SetDirectory(dirTAU); hTau90->SetDirectory(dirTAU);
+
+  htkTaugen->Sumw2();
+  htkTau10->Sumw2(); htkTau20->Sumw2();
+  htkTau30->Sumw2(); htkTau45->Sumw2(); htkTau60->Sumw2();
+  htkTau75->Sumw2(); htkTau90->Sumw2();
+
+  htkTaugen->SetDirectory(dirTAU);
+  htkTau10->SetDirectory(dirTAU); htkTau20->SetDirectory(dirTAU);
+  htkTau30->SetDirectory(dirTAU); htkTau45->SetDirectory(dirTAU); htkTau60->SetDirectory(dirTAU);
+  htkTau75->SetDirectory(dirTAU); htkTau90->SetDirectory(dirTAU);
 
   hisoTaugen->Sumw2();
   hIsoTau30->Sumw2(); hIsoTau45->Sumw2(); hIsoTau60->Sumw2();
