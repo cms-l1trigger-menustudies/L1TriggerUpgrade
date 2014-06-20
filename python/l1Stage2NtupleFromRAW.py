@@ -14,7 +14,9 @@ process.load('UserCode.L1TriggerUpgrade.l1UpgradeMuonIsolator_cfi')
 process.load('UserCode.L1TriggerUpgrade.l1ExtraUpgradeTreeProducer_cfi')
 
 process.load("SLHCUpgradeSimulations.L1TrackTrigger.L1TrackingSequence_cfi")
-process.p += process.DefaultTrackingSequence 
+#process.pTracking = cms.Path( process.DefaultTrackingSequence )
+#process.pTracking = cms.Path( process.FullTrackingSequence )
+process.p += process.FullTrackingSequence 
 
 #Need the L1Tracks and the L1Vertex
 #process.load('Configuration.StandardSequences.L1TrackTrigger_cff')
