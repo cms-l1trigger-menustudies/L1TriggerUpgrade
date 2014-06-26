@@ -46,7 +46,7 @@ namespace L1Analysis
        EtTkem.clear();
        PhiTkem.clear();
        EtaTkem.clear();
-
+       tIsoTkem.clear();
 
     	//track Taus info
        NTktau = 0;
@@ -163,7 +163,7 @@ namespace L1Analysis
     std::vector<float>  EtTkem;
     std::vector<float>  PhiTkem;
     std::vector<float>  EtaTkem;
-
+    std::vector<float> tIsoTkem;
 
 
     int            NTktau;
