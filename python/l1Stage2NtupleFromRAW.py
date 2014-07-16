@@ -108,29 +108,19 @@ process.p += process.L1TkIsoElectronsNewclus
 process.load("SLHCUpgradeSimulations.L1TrackTrigger.L1TkMuonSequence_cfi")
 process.p += process.L1TkMuons
 
-process.L1TkTauFromL1Track = cms.EDProducer("L1TkTauFromL1TrackProducer",
-                                            L1TrackInputTag = cms.InputTag("TTTracksFromPixelDigis","Level1TTTracks"),
-                                            ZMAX = cms.double( 25. ),# in cm
-                                            CHI2MAX = cms.double( 100. ),
-                                            PTMINTRA = cms.double( 2. ),# in GeV
-                                            DRmax = cms.double( 0.5 ),
-                                            nStubsmin = cms.int32( 5 )        # minimum number of stubs
-                                            )
-process.p += process.L1TkTauFromL1Track
+#process.L1TkTauFromL1Track = cms.EDProducer("L1TkTauFromL1TrackProducer",
+#                                            L1TrackInputTag = cms.InputTag("TTTracksFromPixelDigis","Level1TTTracks"),
+#                                            ZMAX = cms.double( 25. ),# in cm
+#                                            CHI2MAX = cms.double( 100. ),
+#                                            PTMINTRA = cms.double( 2. ),# in GeV
+#                                            DRmax = cms.double( 0.5 ),
+#                                            nStubsmin = cms.int32( 5 )        # minimum number of stubs
+#                                            )
+#process.p += process.L1TkTauFromL1Track
 
-
-# --- Now run the L1TkTauParticle producer(s)
-#process.L1TkTauFromCalo = cms.EDProducer("L1TkTauFromCaloProducer",
-#                                                 L1TausInputTag = cms.InputTag("SLHCL1ExtraParticles","Taus"),
-#                                                 L1TrackInputTag = cms.InputTag("L1Tracks","Level1TkTracks"),
-#                                                 ZMAX = cms.double( 25. ),       # in cm
-#                                                 CHI2MAX = cms.double( 100. ),
-#                                                 PTMINTRA = cms.double( 2. ),    # in GeV
-#                                                 DRmax = cms.double( 0.5 ),
-#                                                 nStubsmin = cms.int32( 5 )        # minimum number of stubs
-#                                         )
-#process.p += process.L1TkTauFromCalo 
-
+# --- Produce the L1TkEmTau objects
+process.load("SLHCUpgradeSimulations.L1TrackTrigger.L1TkEmTauSequence_cfi")
+process.p += process.TkEmTauSequence
 
 process.p += process.l1ExtraUpgradeTreeProducer    # upgrade candidates
 

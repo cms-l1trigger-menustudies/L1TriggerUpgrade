@@ -4,15 +4,15 @@ l1ExtraUpgradeTreeProducer = cms.EDAnalyzer("L1ExtraUpgradeTreeProducer",
    egLabel = cms.untracked.InputTag("SLHCL1ExtraParticlesNewClustering","EGamma"),
    isoEGLabel = cms.untracked.InputTag("SLHCL1ExtraParticlesNewClustering","IsoEGamma"),
 
-   tkEGLabel = cms.untracked.InputTag("L1TkElectronsNewclus","EG"),
+   tkEGLabel = cms.untracked.InputTag("L1TkElectrons","EG"),
    tkEG2Label = cms.untracked.InputTag("L1TkElectronsLoose","EG"),
 
-   tkIsoEGLabel = cms.untracked.InputTag("L1TkIsoElectronsNewclus","EG"),
-   tkEMLabel = cms.untracked.InputTag("L1TkPhotonsNewclus","EG"),
+   tkIsoEGLabel = cms.untracked.InputTag("L1TkIsoElectrons","EG"),
+   tkEMLabel = cms.untracked.InputTag("L1TkPhotons","EG"),
     
    tauLabel = cms.untracked.InputTag("SLHCL1ExtraParticles:Taus"),
    isoTauLabel = cms.untracked.InputTag("SLHCL1ExtraParticles:IsoTaus"),
-   tkTauLabel = cms.untracked.InputTag("L1TkTauFromL1Track",""),                                            
+   tkTauLabel = cms.untracked.InputTag("L1TkEmTauProducer",""),
 
 #   jetLabel = cms.untracked.InputTag("L1TowerJetPUSubtractedProducer:PUSubCen8x8"),
    jetLabel = cms.untracked.InputTag("L1CalibFilterTowerJetProducer","CalibratedTowerJets"),   # Calib L1jets                                            
