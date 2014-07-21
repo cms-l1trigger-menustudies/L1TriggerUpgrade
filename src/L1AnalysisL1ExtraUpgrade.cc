@@ -81,6 +81,7 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkEM(const edm::Handle<l1extra::L1
     l1extra_.tkEMEta.push_back(it->eta());
     l1extra_.tkEMPhi.push_back(it->phi());
     l1extra_.tkEMBx.push_back(0);//it->bx());
+    l1extra_.tkEMTrkIso.push_back(it->getTrkIsol());
     l1extra_.nTkEM++;
   }
 }

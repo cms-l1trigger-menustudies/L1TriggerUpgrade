@@ -63,6 +63,7 @@ namespace L1Analysis
       tkEMEta.clear();
       tkEMPhi.clear();
       tkEMBx.clear();
+      tkEMTrkIso.clear();
 
       nTau = 0;
       tauEt.clear();
@@ -203,6 +204,7 @@ namespace L1Analysis
     std::vector<double> tkEMEta;
     std::vector<double> tkEMPhi;
     std::vector<int>    tkEMBx;
+    std::vector<double> tkEMTrkIso;
 
 
     unsigned int nTau;
