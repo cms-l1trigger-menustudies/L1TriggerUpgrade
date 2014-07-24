@@ -81,6 +81,7 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkEM(const edm::Handle<l1extra::L1
     l1extra_.tkEMEta.push_back(it->eta());
     l1extra_.tkEMPhi.push_back(it->phi());
     l1extra_.tkEMBx.push_back(0);//it->bx());
+    l1extra_.tkEMTrkIso.push_back(it->getTrkIsol());
     l1extra_.nTkEM++;
   }
 }
@@ -204,7 +205,7 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkMuon(const edm::Handle<l1extra::
 {
   for(l1extra::L1TkMuonParticleCollection::const_iterator it=muon->begin(); it!=muon->end() && l1extra_.nTkMuons<maxL1Extra; it++){
 
-    l1extra_.tkMuonEt .push_back( it->et());
+    l1extra_.tkMuonEt .push_back( it->pt());
     l1extra_.tkMuonEta.push_back(it->eta());
     l1extra_.tkMuonPhi.push_back(it->phi());
     l1extra_.tkMuonChg.push_back(it->charge());
@@ -214,13 +215,19 @@ void L1Analysis::L1AnalysisL1ExtraUpgrade::SetTkMuon(const edm::Handle<l1extra::
     // l1extra_.tkMuonFwd.push_back(it->isForward());
     //l1extra_.tkMuonRPC.push_back(it->isRPC());
     l1extra_.tkMuonzVtx.push_back(it->getTrkzVtx());
-    l1extra_.tkMuonBx .push_back(0);//it->bx());
+    l1extra_.tkMuonBx .push_back(0); //it->bx());
     /*
     const edm::Ref<l1extra::L1MuonParticleCollection> MuRef = it->getMuRef();
     unsigned int qualityBis = MuRef -> gmtMuonCand().quality();
     l1extra_.tkMuonQuality .push_back(qualityBis);
     */
     l1extra_.tkMuonQuality .push_back(it->quality());
+    /*
+    std::cout << "ptExtra pt " << it->pt()
+	      << "; etaExtra " << it->eta()
+	      << "; phiExtra " << it->phi()
+	      << std::endl;
+    */
 
     l1extra_.nTkMuons++;
   }
